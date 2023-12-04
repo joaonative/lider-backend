@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import registerRoute from "./routes/register.js";
 import loginRoute from "./routes/login.js";
+import productRoute from "./routes/product.js";
 import cors from "cors";
 
 import dotenv from "dotenv";
@@ -21,6 +22,7 @@ mongoose.connect(process.env.MONGO_URL);
 
 app.use("/register", registerRoute);
 app.use("/login", loginRoute);
+app.use("/product", productRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

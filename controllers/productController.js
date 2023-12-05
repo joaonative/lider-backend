@@ -36,3 +36,34 @@ export async function editProduct(req, res) {
     res.status(500).json({ error: "Erro ao editar produto" });
   }
 }
+
+export async function listAllProducts(req, res) {
+  try {
+    const allProducts = await Product.find();
+    res.json(allProducts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao listar produtos" });
+  }
+}
+
+export async function listProductsByCategory(req, res) {
+  try {
+    const category = req.params.category;
+
+    if (!isValidCategory(category)) {
+      return res.status(400).json({ error: "Categoria inválida" });
+    }
+
+    const productsInCategory = await Product.find({ category });
+    res.json(productsInCategory);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao listar produtos por categoria" });
+  }
+}
+
+function isValidCategory(category) {
+  const validCategories = ["sobremesa", "salgado", "lanche", "bebida"];
+  return validCategories.includes(category);
+}

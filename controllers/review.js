@@ -11,12 +11,11 @@ export async function createReview(req, res) {
     const review = await Review.create({
       user: {
         id: user._id,
-        email: user.email,
+        name: user.name,
       },
       rating,
       message,
     });
-
     res.status(201).json(review);
   } catch (error) {
     console.error(error);

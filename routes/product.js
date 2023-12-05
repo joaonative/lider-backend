@@ -1,4 +1,5 @@
 import express from "express";
+import { authMiddleware } from "../middleware/authMiddleware.js";
 import {
   createProduct,
   editProduct,
@@ -6,7 +7,7 @@ import {
 
 const router = express.Router();
 
-router.put("/:id", editProduct);
-router.post("/", createProduct);
+router.put("/:id", authMiddleware, editProduct);
+router.post("/", authMiddleware, createProduct);
 
 export default router;

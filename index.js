@@ -24,7 +24,6 @@ mongoose
   .then(() => {
     console.log("Conectado ao MongoDB");
 
-    app.use(authMiddleware);
     app.use("/register", registerRoute);
     app.use("/login", loginRoute);
     app.use("/product", productRoute);

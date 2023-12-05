@@ -22,3 +22,13 @@ export async function createReview(req, res) {
     res.status(500).send("Erro ao criar avaliação da loja");
   }
 }
+
+export async function listAllReviews(req, res) {
+  try {
+    const allReviews = await Review.find();
+    res.json(allReviews);
+  } catch (errr) {
+    console.error(error);
+    res.status(500).send("Erro ao listar reviews");
+  }
+}

@@ -5,6 +5,7 @@ import {
   editProduct,
   listAllProducts,
   listProductsByCategory,
+  listProductsById,
 } from "../controllers/productController.js";
 
 const router = express.Router();
@@ -12,6 +13,7 @@ const router = express.Router();
 router.put("/:id", authMiddleware, editProduct);
 router.post("/", authMiddleware, createProduct);
 router.get("/", listAllProducts);
+router.get("/:id", listProductsById);
 router.get("/:category", listProductsByCategory);
 
 export default router;
